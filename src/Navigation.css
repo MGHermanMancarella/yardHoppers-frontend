@@ -1,0 +1,42 @@
+nav {
+    background-color: #e98f23;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1em;
+    font-weight: 300;
+}
+
+nav h2 {
+    flex: 0 0 auto;
+    font-weight: 200;
+}
+
+nav div {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1em;
+}
+
+nav a {
+    padding: 0.5em 0;
+    color: #02292b;
+    text-decoration: none;
+}
+
+nav a.active {
+    color: #b6e0ea;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #1e5663;
+    text-decoration: none;
+}
+
+
+
+  /* .yes-curr-user {
+  justify-content: right;
+  } */
