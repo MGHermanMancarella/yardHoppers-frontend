@@ -4,7 +4,6 @@ import userContext from "./userContext";
 import "./Navigation.css"
 
 
-
 /** Navigation bar with links for Jobly
  *
  *
