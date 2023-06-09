@@ -4,6 +4,8 @@ import Homepage from "./Homepage";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import Listings from "./Listings";
+import Profile from './Profile'
+import CreateListing from './CreateListing'
 import userContext from "./userContext";
 
 
@@ -25,19 +27,30 @@ import userContext from "./userContext";
  *
  */
 
-function RoutesList({ login, signup, update }) {
-
-
+function RoutesList({ login, signup }) {
+  const { currUser } = useContext(userContext);
 
   return (
     <Routes>
-      <Route path="/" element={<Homepage />} />
+  {!currUser &&
+  <>
       <Route path="/login" element={<LoginForm handleLogin={login} />} />
       <Route path="/signup" element={<SignupForm handleSignup={signup}/>} />
+
+      </>
+  }
+
+{!currUser &&
+        <>
+      {/* <Route path="/" element={<Profile />} />
+      <Route path="/" element={<CreateListing />} /> */}
+      </>
+}
+      <Route path="/" element={<Homepage />} />
       <Route path="/listings" element={<Listings />} />
-      {/* <Route path="/" element={<Profile />} /> */}
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
+
   );
 }
 

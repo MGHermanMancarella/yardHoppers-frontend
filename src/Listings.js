@@ -6,7 +6,7 @@ import YardHoppersApi from "./api"
 
 function Listings() {
   const [listings, setListings] = useState({
-    companies: null,
+    listings: null,
     isLoading: true,
   });
 
@@ -14,7 +14,7 @@ function Listings() {
   useEffect(function fetchListingsWhenMounted() {
     async function fetchListings() {
       const listingsResp = await YardHoppersApi.getListings();
-      
+
       setListings(listingsResp);
     }
     fetchListings();
@@ -31,7 +31,7 @@ function Listings() {
 
   if (listings.isLoading) return <i>Loading...</i>;
 
-
+  console.log("listings ====>>>", listings)
 
   return (
     <Row xs={1} md={3} className="g-4 m-3 p-3">

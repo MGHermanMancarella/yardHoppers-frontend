@@ -11,7 +11,7 @@ function App() {
   const [token, setToken] = useState(localStorage.getItem("yhToken"));
   const [currUser, setCurrUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  console.log("currUser======>", currUser);
+
 
   /** useEffect to check state of token.
    * If token, decode token as payload.
@@ -27,7 +27,6 @@ function App() {
           YardHoppersApi.token = token;
 
           const user = await YardHoppersApi.getUserData(payload.username);
-          console.log(user)
           setCurrUser(user);
           setIsLoading(false);
         } else {
@@ -55,22 +54,20 @@ function App() {
   /** Make request to login, set response as token. */
   async function login({username, password}) {
     const resp = await YardHoppersApi.login( username, password );
-    console.log("app.login",resp)
     setToken(resp);
   }
 
   /** Make request to sign up, set response as token. */
   async function signup(data) {
-    console.log("datadatadata =====>>>>>", data)
     const resp = await YardHoppersApi.register(data);
     setToken(resp);
   }
 
-  /** Make request to update user information, set response as currUser */
-  async function update(data) {
-    const resp = await YardHoppersApi.update(data);
-    setCurrUser(resp);
-  }
+  // /** Make request to update user information, set response as currUser */
+  // async function update(data) {
+  //   const resp = await YardHoppersApi.update(data);
+  //   setCurrUser(resp);
+  // }
 
   /** Log out user, reset token. */
   function logout() {
@@ -82,7 +79,7 @@ function App() {
     <div className="App">
       <userContext.Provider value={{ currUser }}>
         <BrowserRouter>
-          <Navigation />
+          <Navigation logout={logout}/>
           <RoutesList login={login} signup={signup} />
         </BrowserRouter>
       </userContext.Provider>

@@ -1,5 +1,9 @@
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import userContext from "./userContext";
 import "./Navigation.css"
+
+
 
 /** Navigation bar with links for Jobly
  *
@@ -8,13 +12,18 @@ import "./Navigation.css"
  *
  */
 
-function Navigation() {
+function Navigation({logout}) {
+  const { currUser } = useContext(userContext);
 
   return (
     <nav className="NavBar">
       <NavLink to="/" end>
        <h2> Yard Hoppers</h2>
       </NavLink>
+      <NavLink to="/listings" end>
+            Listings
+          </NavLink>
+      {!currUser &&
         <div className="no-curr-user">
           <NavLink to="/login" end>
           Login
@@ -22,12 +31,10 @@ function Navigation() {
           <NavLink to="/signup" end>
             Sign Up
           </NavLink>
-          <NavLink to="/listings" end>
-            Listings
-          </NavLink>
         </div>
+        }
 
-
+{currUser &&
         <div className="yes-curr-user">
           <NavLink to="/new-listing" end>
             Create a Listing
@@ -35,8 +42,11 @@ function Navigation() {
           <NavLink to="/profile" end>
             Profile
           </NavLink>
-
+          <NavLink to="/" onClick={logout} end>
+            Log out {currUser.username}
+          </NavLink>
         </div>
+        }
     </nav>
   );
 }
