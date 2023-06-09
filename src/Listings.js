@@ -13,7 +13,9 @@ function Listings() {
   /** Make get request and update companiesList upon mount */
   useEffect(function fetchListingsWhenMounted() {
     async function fetchListings() {
-      searchListings();
+      const listingsResp = await YardHoppersApi.getListings();
+      
+      setListings(listingsResp);
     }
     fetchListings();
   }, []);
@@ -53,3 +55,15 @@ function Listings() {
 }
 
 export default Listings;
+//TODO:
+// I was f'n around and got them to show pics -
+// {Array.from( listings ).map((listing, idx) => (
+//   <Col key={idx}>
+//     <Card>
+//       <Card.Img variant="top" src={listing.photo_url} />
+//       <Card.Body>
+//         <Card.Title>Card title</Card.Title>
+//         <Card.Text>{listing.description}
+//           This is a longer card with supporting text below as a natural
+//           lead-in to additional content. This content is a little bit
+//           longer.

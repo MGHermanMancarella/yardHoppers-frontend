@@ -22,13 +22,12 @@ function App() {
     function checkToken() {
       async function decodeToken() {
         if (token) {
-          console.log("tokentoekntoekn=====>", token);
           const payload = jwt_decode(token);
 
-          console.log("payload =======>", payload);
           YardHoppersApi.token = token;
 
-          const user = await YardHoppersApi.login(payload.username, payload.password);
+          const user = await YardHoppersApi.getUserData(payload.username);
+          console.log(user)
           setCurrUser(user);
           setIsLoading(false);
         } else {
@@ -54,8 +53,9 @@ function App() {
   );
 
   /** Make request to login, set response as token. */
-  async function login(username, password) {
-    const resp = await YardHoppersApi.login({ username, password });
+  async function login({username, password}) {
+    const resp = await YardHoppersApi.login( username, password );
+    console.log("app.login",resp)
     setToken(resp);
   }
 

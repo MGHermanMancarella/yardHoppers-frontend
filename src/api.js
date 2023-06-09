@@ -43,6 +43,12 @@ class YardHoppersApi {
     return res.listings;
   }
 
+  /** Get details about User by username/token */
+  static async getUserData(username) {
+    let res = await this.request(`users/${username}`);
+    return res.user;
+  }
+
   /** Update details for specific listing. */
   static async update(listId, { price, description, photo_url }) {
     let res = await this.request(
@@ -53,21 +59,22 @@ class YardHoppersApi {
     return res.user;
   }
 
- /** Return token when creating a new user. */
-static async register({ username, password, firstName, lastName, email }) {
-  try {
-    let res = await this.request(
-      "auth/register",
-      { username, password, firstName, lastName, email },
-      "post"
-    );
-    return res.token;
-  } catch (err) {
-    console.error("API Error:", err);
-    let message = err.response?.data?.error?.message || "Something went wrong.";
-    throw Array.isArray(message) ? message : [message];
+  /** Return token when creating a new user. */
+  static async register({ username, password, firstName, lastName, email }) {
+    try {
+      let res = await this.request(
+        "auth/register",
+        { username, password, firstName, lastName, email },
+        "post"
+      );
+      return res.token;
+    } catch (err) {
+      console.error("API Error:", err);
+      let message =
+        err.response?.data?.error?.message || "Something went wrong.";
+      throw Array.isArray(message) ? message : [message];
+    }
   }
-}
 
   /** Return token when logging in as existing user. */
   static async login(username, password) {
