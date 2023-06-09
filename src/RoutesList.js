@@ -5,7 +5,7 @@ import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import Listings from "./Listings";
 import Profile from './Profile'
-import CreateListing from './CreateListingForm'
+import CreateListingForm from "./CreateListingForm"
 import userContext from "./userContext";
 
 
@@ -40,12 +40,13 @@ function RoutesList({ login, signup }) {
       </>
   }
 
-{!currUser &&
+{currUser &&
         <>
-      {/* <Route path="/" element={<Profile />} />
-      <Route path="/" element={<CreateListing />} /> */}
+      {/* <Route path="/" element={<Profile />} /> */}
+      <Route path="/new-listing" element={<CreateListingForm  />}  />
       </>
 }
+
       <Route path="/" element={<Homepage />} />
       <Route path="/listings" element={<Listings />} />
       <Route path="*" element={<Navigate to="/" />} />
