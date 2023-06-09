@@ -23,30 +23,34 @@ class YardHoppersApi {
     try {
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
-      console.error("API Error:", err.response);
-      let message = err.response.data.error.message;
-      throw Array.isArray(message) ? message : [message];
+      console.error("API Error:", err);
+      // let message = err.response.data.error.message;
+      // throw Array.isArray(message) ? message : [message];
     }
   }
 
   // Individual API routes
 
-  /** Get details on a company by handle. */
-  static async getCompany(handle) {
-    let res = await this.request(`companies/${handle}`);
-    return res.company;
+  /** Get details on a listings by listId. */
+  static async getListing(listId) {
+    let res = await this.request(`listings/${listId}`);
+    return res.listings;
   }
 
-  /** Get details on all companies. */
-  static async getCompanies(nameLike) {
-    let res = await this.request("companies", { nameLike });
-    return res.companies;
+  /** Get details on all listings. */
+  static async getListings() {
+    let res = await this.request("listings");
+    return res.listings;
   }
 
-  /** Get details on all jobs. */
-  static async getJobs(title) {
-    let res = await this.request("jobs", { title });
-    return res.jobs;
+  /** Update details for specific listing. */
+  static async update(listId, { price, description, photo_url }) {
+    let res = await this.request(
+      `listings/${listId}`,
+      { price, description, photo_url },
+      "patch"
+    );
+    return res.user;
   }
 
   /** Return token when creating a new user. */
@@ -63,18 +67,6 @@ class YardHoppersApi {
   static async login({ username, password }) {
     let res = await this.request("auth/token", { username, password }, "post");
     return res.token;
-  }
-
-  /** Get details on specific user. */
-  static async getUser(username) {
-    let res = await this.request(`users/${username}`);
-    return res.user;
-  }
-
-  /** Update details for specific user. */
-  static async update({ username, firstName, lastName, email }) {
-    let res = await this.request(`users/${username}`, { firstName, lastName, email }, "patch");
-    return res.user;
   }
 }
 

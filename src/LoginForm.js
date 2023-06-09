@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Alert from "react-bootstrap/Alert"
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
-
 
 /** Form for login.
  *
@@ -19,8 +18,7 @@ import "./LoginForm.css";
  */
 
 function LoginForm({ handleLogin }) {
-  const initialFormData = { username: "",
-                            password: ""};
+  const initialFormData = { username: "", password: "" };
   const [loginData, setLoginData] = useState(initialFormData);
   const [error, setError] = useState([]);
 
@@ -31,9 +29,9 @@ function LoginForm({ handleLogin }) {
     evt.preventDefault();
     try {
       await handleLogin(loginData);
-    } catch(err) {
-      setError(err)
-      return
+    } catch (err) {
+      setError(err);
+      return;
     }
     setLoginData(initialFormData);
     navigate("/");
@@ -42,45 +40,51 @@ function LoginForm({ handleLogin }) {
   /** Update form input. */
   function handleChange(evt) {
     const { name, value } = evt.target;
-    setLoginData(lData => ({
+    setLoginData((lData) => ({
       ...lData,
       [name]: value,
     }));
-   }
+  }
 
   return (
-    <div className="LoginPage">
+    <div className='LoginPage'>
       <h1>Log In</h1>
-      <Form className="LoginForm" onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="loginUsername">
+      <Form className='LoginForm' onSubmit={handleSubmit}>
+        <Form.Group className='mb-3' controlId='loginUsername'>
           <Form.Label>Username</Form.Label>
           <Form.Control
-              type="text"
-              name="username"
-              placeholder="Username"
-              onChange={handleChange}
-              value={loginData.username} />
+            type='text'
+            name='username'
+            placeholder='Username'
+            onChange={handleChange}
+            value={loginData.username}
+          />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="loginPassword">
+        <Form.Group className='mb-3' controlId='loginPassword'>
           <Form.Label>Password</Form.Label>
           <Form.Control
-              type="password"
-              name="password"
-              placeholder="Password"
-              onChange={handleChange}
-              value={loginData.password} />
+            type='password'
+            name='password'
+            placeholder='Password'
+            onChange={handleChange}
+            value={loginData.password}
+          />
         </Form.Group>
 
         {error.length > 0 &&
-          error.map((e, i) => <Alert key={i} variant="danger">{e}</Alert>)
-        }
+          error.map((e, i) => (
+            <Alert key={i} variant='danger'>
+              {e}
+            </Alert>
+          ))}
 
-        <Button variant="outline-dark" type="submit">Submit</Button>
-
+        <Button variant='outline-dark' type='submit'>
+          Submit
+        </Button>
       </Form>
-  </div>
-  )
+    </div>
+  );
 }
 
 export default LoginForm;

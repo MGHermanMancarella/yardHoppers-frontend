@@ -27,11 +27,13 @@ import userContext from "./userContext";
 
 function RoutesList({ login, signup, update }) {
 
+
+
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
-      <Route path="/login" element={<LoginForm />} />
-      <Route path="/signup" element={<SignupForm />} />
+      <Route path="/login" element={<LoginForm handleLogin={login} />} />
+      <Route path="/signup" element={<SignupForm handleSignup={signup}/>} />
       <Route path="/listings" element={<Listings />} />
       {/* <Route path="/" element={<Profile />} /> */}
       <Route path="*" element={<Navigate to="/" />} />

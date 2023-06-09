@@ -7,6 +7,7 @@ import YardHoppersApi from "./api";
 import jwt_decode from "jwt-decode";
 import userContext from "./userContext";
 
+
 function App() {
   const [token, setToken] = useState(localStorage.getItem("yhToken"));
   const [currUser, setCurrUser] = useState(null);
@@ -25,7 +26,7 @@ function App() {
           const payload = jwt_decode(token);
           YardHoppersApi.token = token;
 
-          const user = await YardHoppersApi.getUser(payload.username);
+          const user = await YardHoppersApi.login(payload.username);
           setCurrUser(user);
           setIsLoading(false);
         } else {
@@ -75,17 +76,14 @@ function App() {
 
   if (isLoading) return <i>Loading...</i>;
   return (
-    <div className="App">
+    <div className='App'>
       <userContext.Provider value={{ currUser }}>
         <BrowserRouter>
           <Navigation />
-          {/* <RoutesList login={login} signup={signup} /> */}
-<div className="app-body">
-  <RoutesList login={login} signup={signup} />
-</div>
+          <RoutesList login={login} signup={signup} />
         </BrowserRouter>
       </userContext.Provider>
-      </div>
+    </div>
   );
 }
 
