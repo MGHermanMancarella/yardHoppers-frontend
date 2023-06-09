@@ -1,14 +1,10 @@
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import YardHoppersApi from "./api"
 
-function Listings() {
-  const [listings, setListings] = useState({
-    listings: null,
-    isLoading: true,
-  });
+function Listings( { listings, setListings } ) {
 
   /** Make get request and update companiesList upon mount */
   useEffect(function fetchListingsWhenMounted() {

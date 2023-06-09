@@ -12,6 +12,11 @@ function App() {
   const [currUser, setCurrUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [listings, setListings] = useState({
+    listings: null,
+    isLoading: true,
+  });
+
 
   /** useEffect to check state of token.
    * If token, decode token as payload.
@@ -74,13 +79,18 @@ function App() {
     setToken("");
   }
 
+async function createListing(data) {
+ const resp = await YardHoppersApi.createListing(data);
+ setListings();
+  }
+
   if (isLoading) return <i>Loading...</i>;
   return (
     <div className="App">
       <userContext.Provider value={{ currUser }}>
         <BrowserRouter>
           <Navigation logout={logout}/>
-          <RoutesList login={login} signup={signup} />
+          <RoutesList login={login} signup={signup} createListing={createListing}/>
         </BrowserRouter>
       </userContext.Provider>
     </div>

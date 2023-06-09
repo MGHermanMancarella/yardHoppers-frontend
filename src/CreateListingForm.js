@@ -157,7 +157,7 @@ function CreateListing({ handleCreateListing }) {
             </Alert>
           ))}
 
-        <Button variant="outline-dark" type="submit">
+        <Button variant="outline-light" type="submit">
           Submit
         </Button>
       </Form>

@@ -27,7 +27,7 @@ import userContext from "./userContext";
  *
  */
 
-function RoutesList({ login, signup }) {
+function RoutesList({ login, signup, createListing}) {
   const { currUser } = useContext(userContext);
 
   return (
@@ -43,7 +43,7 @@ function RoutesList({ login, signup }) {
 {currUser &&
         <>
       {/* <Route path="/" element={<Profile />} /> */}
-      <Route path="/new-listing" element={<CreateListingForm  />}  />
+      <Route path="/new-listing" element={<CreateListingForm  handleCreateListing={createListing}/>}  />
       </>
 }
 

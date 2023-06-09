@@ -43,6 +43,14 @@ class YardHoppersApi {
     return res.listings;
   }
 
+static async createListing(newListingData) {
+  console.log("API newListingData ====>>> ", newListingData);
+  let res = await this.request('listings', newListingData, "post");
+
+  console.log("API NEW LSITING RESP ====>>>>", res)
+  return res.listing;
+}
+
   /** Get details about User by username/token */
   static async getUserData(username) {
     let res = await this.request(`users/${username}`);
