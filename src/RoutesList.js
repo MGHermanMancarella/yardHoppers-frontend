@@ -5,7 +5,7 @@ import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import Listings from "./Listings";
 import Profile from './Profile'
-import CreateListing from './CreateListing'
+import CreateListing from './CreateListingForm'
 import userContext from "./userContext";
 
 
