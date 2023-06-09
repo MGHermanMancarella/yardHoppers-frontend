@@ -14,18 +14,21 @@ import logo from "./logo.png";
 
 function Homepage() {
   const { currUser } = useContext(userContext);
+
+
   return (
     <div className="home">
-      {/* {currUser && <h3>Welcome, {currUser.username}!</h3>}
-      {!currUser && ( */}
+
+
       <header className="home-header">
         <img src={logo} className="home-logo" alt="logo" />
         <div className="title">
+        {currUser && <h3>Welcome, {currUser.username}!</h3>}
           <h1>Yard Hoppers</h1>
           <h4>Get on my lawn!</h4>
         </div>
       </header>
-      {/* )} */}
+
     </div>
   );
 }

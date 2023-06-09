@@ -32,14 +32,16 @@ class YardHoppersApi {
   // Individual API routes
 
   /** Get details on a listings by listId. */
-  static async getListing(listId) {
-    let res = await this.request(`listings/${listId}`);
-    return res.listings;
+  static async getListing(listing_id) {
+    let res = await this.request(`listings/${listing_id}`);
+    console.log('LISTING RESP FROM getLsitings ===> ', res)
+    return res.listing;
   }
 
   /** Get details on all listings. */
   static async getListings() {
     let res = await this.request("listings");
+
     return res.listings;
   }
 
