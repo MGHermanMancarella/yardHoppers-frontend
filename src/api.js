@@ -24,8 +24,8 @@ class YardHoppersApi {
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
       console.error("API Error:", err);
-      // let message = err.response.data.error.message;
-      // throw Array.isArray(message) ? message : [message];
+      let message = err.response.data.error.message;
+      throw Array.isArray(message) ? message : [message];
     }
   }
 
@@ -53,18 +53,24 @@ class YardHoppersApi {
     return res.user;
   }
 
-  /** Return token when creating a new user. */
-  static async register({ username, password, firstName, lastName, email }) {
+ /** Return token when creating a new user. */
+static async register({ username, password, firstName, lastName, email }) {
+  try {
     let res = await this.request(
       "auth/register",
       { username, password, firstName, lastName, email },
       "post"
     );
     return res.token;
+  } catch (err) {
+    console.error("API Error:", err);
+    let message = err.response?.data?.error?.message || "Something went wrong.";
+    throw Array.isArray(message) ? message : [message];
   }
+}
 
   /** Return token when logging in as existing user. */
-  static async login({ username, password }) {
+  static async login(username, password) {
     let res = await this.request("auth/token", { username, password }, "post");
     return res.token;
   }

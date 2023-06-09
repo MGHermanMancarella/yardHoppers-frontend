@@ -1,10 +1,38 @@
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import React, { useState, useEffect } from "react";
+import YardHoppersApi from "./api"
 
 function Listings() {
+  const [listings, setListings] = useState({
+    companies: null,
+    isLoading: true,
+  });
+
+  /** Make get request and update companiesList upon mount */
+  useEffect(function fetchListingsWhenMounted() {
+    async function fetchListings() {
+      searchListings();
+    }
+    fetchListings();
+  }, []);
+
+  /** Perform search with argument */
+  async function searchListings(query) {
+    const response = await YardHoppersApi.getListings(query);
+    setListings({
+      listings: response,
+      isLoading: false,
+    });
+  }
+
+  if (listings.isLoading) return <i>Loading...</i>;
+
+
+
   return (
-    <Row xs={1} md={2} className="g-4">
+    <Row xs={1} md={3} className="g-4 m-3 p-3">
       {Array.from({ length: 4 }).map((_, idx) => (
         <Col key={idx}>
           <Card>

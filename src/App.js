@@ -7,12 +7,11 @@ import YardHoppersApi from "./api";
 import jwt_decode from "jwt-decode";
 import userContext from "./userContext";
 
-
 function App() {
   const [token, setToken] = useState(localStorage.getItem("yhToken"));
   const [currUser, setCurrUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  console.log("currUser=", currUser);
+  console.log("currUser======>", currUser);
 
   /** useEffect to check state of token.
    * If token, decode token as payload.
@@ -23,10 +22,13 @@ function App() {
     function checkToken() {
       async function decodeToken() {
         if (token) {
+          console.log("tokentoekntoekn=====>", token);
           const payload = jwt_decode(token);
+
+          console.log("payload =======>", payload);
           YardHoppersApi.token = token;
 
-          const user = await YardHoppersApi.login(payload.username);
+          const user = await YardHoppersApi.login(payload.username, payload.password);
           setCurrUser(user);
           setIsLoading(false);
         } else {
@@ -52,13 +54,14 @@ function App() {
   );
 
   /** Make request to login, set response as token. */
-  async function login(data) {
-    const resp = await YardHoppersApi.login(data);
+  async function login(username, password) {
+    const resp = await YardHoppersApi.login({ username, password });
     setToken(resp);
   }
 
   /** Make request to sign up, set response as token. */
   async function signup(data) {
+    console.log("datadatadata =====>>>>>", data)
     const resp = await YardHoppersApi.register(data);
     setToken(resp);
   }
@@ -76,7 +79,7 @@ function App() {
 
   if (isLoading) return <i>Loading...</i>;
   return (
-    <div className='App'>
+    <div className="App">
       <userContext.Provider value={{ currUser }}>
         <BrowserRouter>
           <Navigation />
