@@ -8,7 +8,6 @@ import userContext from "./userContext";
 
 function CreateListing({ handleCreateListing }) {
   const { currUser } = useContext(userContext);
-
   const initialFormData = {
     title: "",
     address: "",
@@ -20,10 +19,10 @@ function CreateListing({ handleCreateListing }) {
     host_user: currUser.username,
     photo_url: null,
   };
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState(initialFormData);
   const [error, setError] = useState([]);
-
-  const navigate = useNavigate();
 
   async function handleSubmit(evt) {
     evt.preventDefault();
@@ -106,7 +105,7 @@ function CreateListing({ handleCreateListing }) {
           <Form.Label>Zipcode</Form.Label>
           <Form.Control
             type="text"
-            name="Zipcode"
+            name="zipcode"
             placeholder="Zipcode"
             onChange={handleChange}
             value={formData.zipcode}
@@ -117,7 +116,7 @@ function CreateListing({ handleCreateListing }) {
           <Form.Label>Description</Form.Label>
           <Form.Control
             type="text"
-            name="Description"
+            name="description"
             placeholder="Description"
             onChange={handleChange}
             value={formData.description}
@@ -127,8 +126,8 @@ function CreateListing({ handleCreateListing }) {
         <Form.Group className="mb-3" controlId="listingPrice">
           <Form.Label>Price</Form.Label>
           <Form.Control
-            type="text"
-            name="Price"
+            type="number"
+            name="price"
             placeholder="Price"
             onChange={handleChange}
             value={formData.price}

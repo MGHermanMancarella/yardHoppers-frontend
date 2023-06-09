@@ -11,12 +11,12 @@ function App() {
   const [token, setToken] = useState(localStorage.getItem("yhToken"));
   const [currUser, setCurrUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
   const [listings, setListings] = useState({
     listings: null,
     isLoading: true,
   });
 
+  const listState = {listings, setListings}
 
   /** useEffect to check state of token.
    * If token, decode token as payload.
@@ -81,7 +81,8 @@ function App() {
 
 async function createListing(data) {
  const resp = await YardHoppersApi.createListing(data);
- setListings();
+ const updatedListings = {...listings, resp}
+ setListings(updatedListings);
   }
 
   if (isLoading) return <i>Loading...</i>;
@@ -90,7 +91,7 @@ async function createListing(data) {
       <userContext.Provider value={{ currUser }}>
         <BrowserRouter>
           <Navigation logout={logout}/>
-          <RoutesList login={login} signup={signup} createListing={createListing}/>
+          <RoutesList login={login} signup={signup} createListing={createListing} listState={listState}/>
         </BrowserRouter>
       </userContext.Provider>
     </div>

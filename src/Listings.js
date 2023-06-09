@@ -4,8 +4,9 @@ import Row from "react-bootstrap/Row";
 import React, { useEffect } from "react";
 import YardHoppersApi from "./api"
 
-function Listings( { listings, setListings } ) {
-
+function Listings( { listState } ) {
+const listings = listState.listings
+const setListings = listState.setListings
   /** Make get request and update companiesList upon mount */
   useEffect(function fetchListingsWhenMounted() {
     async function fetchListings() {
@@ -16,14 +17,14 @@ function Listings( { listings, setListings } ) {
     fetchListings();
   }, []);
 
-  /** Perform search with argument */
-  async function searchListings(query) {
-    const response = await YardHoppersApi.getListings(query);
-    setListings({
-      listings: response,
-      isLoading: false,
-    });
-  }
+  // /** Perform search with argument */
+  // async function searchListings(query) {
+  //   const response = await YardHoppersApi.getListings(query);
+  //   setListings({
+  //     listings: response,
+  //     isLoading: false,
+  //   });
+  // }
 
   if (listings.isLoading) return <i>Loading...</i>;
 
