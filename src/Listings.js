@@ -1,18 +1,23 @@
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import YardHoppersApi from "./api"
 
 function Listings( { listState } ) {
 const listings = listState.listings
 const setListings = listState.setListings
+
+const [isLoading, setIsLoading] = useState(true);
+
+
   /** Make get request and update companiesList upon mount */
   useEffect(function fetchListingsWhenMounted() {
     async function fetchListings() {
       const listingsResp = await YardHoppersApi.getListings();
 
       setListings(listingsResp);
+      setIsLoading(false);
     }
     fetchListings();
   }, []);
@@ -26,7 +31,7 @@ const setListings = listState.setListings
   //   });
   // }
 
-  if (listings.isLoading) return <i>Loading...</i>;
+  if (isLoading) return <i>Loading...</i>;
 
   console.log("listings ====>>>", listings)
 

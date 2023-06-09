@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import userContext from "./userContext";
 import "./Homepage.css";
-import logo from './logo.png';
+import logo from "./logo.png";
 
 /** Homepage for Yard Hoppers
  *
@@ -18,11 +18,11 @@ function Homepage() {
     <div className="home">
       {/* {currUser && <h3>Welcome, {currUser.username}!</h3>}
       {!currUser && ( */}
-        <header className="home-header">
+      <header className="home-header">
         <img src={logo} className="home-logo" alt="logo" />
         <div className="title">
-        <h1>Yard Hoppers</h1>
-        <h4>Get on my lawn!</h4>
+          <h1>Yard Hoppers</h1>
+          <h4>Get on my lawn!</h4>
         </div>
       </header>
       {/* )} */}

@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
+import "./CreateListingForm.css";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import userContext from "./userContext";
 
 function CreateListing({ handleCreateListing }) {
   const { currUser } = useContext(userContext);
+
   const initialFormData = {
     title: "",
     address: "",
@@ -41,7 +43,7 @@ function CreateListing({ handleCreateListing }) {
     }
 
     setFormData(initialFormData);
-    navigate("/");
+    navigate("/listings");
   }
 
   function handleChange(evt) {
@@ -156,7 +158,7 @@ function CreateListing({ handleCreateListing }) {
             </Alert>
           ))}
 
-        <Button variant="outline-light" type="submit">
+        <Button variant="outline-dark" type="submit">
           Submit
         </Button>
       </Form>
