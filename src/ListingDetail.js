@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Card from "react-bootstrap/Card";
+import { Card, Row, Col, Container, Button } from "react-bootstrap";
 
 import { useParams } from 'react-router-dom';
 import YardHoppersApi from './api';
@@ -25,9 +25,10 @@ function ListingDetail() {
     async function fetchListing() {
       try {
         const response = await YardHoppersApi.getListing(listing_id);
-        setListing(response.listing);
+        console.log("RESP FROM API CALL IN LISTING DETAIL ===>>>", response);
+        setListing(response);
       } catch (error) {
-        console.error(error);
+        console.error("error ===>", error);
       }
       setIsLoading(false);
     }
@@ -41,12 +42,13 @@ function ListingDetail() {
   }
 
   return (
-    <div className="listing-card-container">
-      <div>
-        <p>{listing.description}</p>
-        <div>
-          <Card>
+    <Container className="listing-card-container">
+      <Card>
+        <Row>
+          <Col md={6}>
             <Card.Img variant="top" src={listing.photo_url} />
+          </Col>
+          <Col md={6}>
             <Card.Body>
               <Card.Title>{listing.title}</Card.Title>
               <Card.Text>
@@ -54,11 +56,12 @@ function ListingDetail() {
               </Card.Text>
               <Card.Text>{listing.description}</Card.Text>
               <Card.Text>${listing.price}/day</Card.Text>
+              <Button variant="primary">Book Now</Button>
             </Card.Body>
-          </Card>
-        </div>
-      </div>
-    </div>
+          </Col>
+        </Row>
+      </Card>
+    </Container>
   );
 }
 
