@@ -34,7 +34,7 @@ class YardHoppersApi {
   /** Get details on a listings by listId. */
   static async getListing(listing_id) {
     let res = await this.request(`listings/${listing_id}`);
-
+    console.log("RES FROM API CALL ===>", res)
     return res.listing;
   }
 

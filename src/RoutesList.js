@@ -5,7 +5,7 @@ import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import Listings from "./Listings";
 // import Profile from './Profile'
-// import ListingDetail from "./ListingDetail"
+import ListingDetail from "./ListingDetail"
 import CreateListingForm from "./CreateListingForm"
 import userContext from "./userContext";
 
@@ -50,7 +50,7 @@ function RoutesList({ login, signup, createListing, listState}) {
 
       <Route path="/" element={<Homepage />} />
       <Route path="/listings" element={<Listings listState={listState}/>} />
-      {/* <Route path="/listings/:listing_id" element={<ListingDetail />} /> */}
+      <Route path="/listings/:listing_id" element={<ListingDetail />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
 

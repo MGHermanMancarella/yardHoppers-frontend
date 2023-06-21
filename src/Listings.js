@@ -30,7 +30,7 @@ function Listings({ listState }) {
 
   return (
     <div className='ListingsPage'>
-    <Row xs={1} sm={2} md={3} lg={4} className="g-4 m-2 p-2" >
+    <Row xs={2} md={3} lg={4} className="g-4 m-2 p-2" >
       {listings.map((listing, idx) => (
         <Col key={idx} className='my-col'>
           <Link to={`/listings/${listing.listing_id}`} className="listings-link">
