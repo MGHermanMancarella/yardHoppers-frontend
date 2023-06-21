@@ -1,40 +1,57 @@
 nav {
-    background-color: #e98f23;
-    font-size: 18px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1em;
-    font-weight: 300;
+  background-color: #e98f23;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 300;
 }
 
 nav h2 {
-    flex: 0 0 auto;
-    font-weight: 200;
+  flex: 0 0 auto;
+  font-weight: 200;
+  padding-left: 40px;
 }
 
 nav div {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1em;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1em;
+  padding-right: 30px;
 }
 
-nav a {
-    padding: 0.5em 0;
-    color: #02292b;
-    text-decoration: none;
+nav .nav-link {
+  padding: 0.5em 0;
+  color: #02292b;
+  text-decoration: none;
 }
 
-nav a.active {
-    color: #b6e0ea;
-    text-decoration: none;
+nav .nav-link.active {
+  color: #b6e0ea !important;
+  text-decoration: none;
 }
 
-nav a:hover {
-    color: #1e5663;
-    text-decoration: none;
+nav .nav-link:hover {
+  color: #1e5663 !important;
+  text-decoration: none;
 }
 
-  .yes-curr-user {
+.yes-curr-user {
   justify-content: right;
-  }
+}
+
+nav h2.nav-link:hover {
+  color: #1e5663 !important;
+}
+
+nav h2.nav-link.active {
+  color: #b6e0ea !important;
+}
+
+nav .nav-link.logout {
+  color: #02292b !important;
+}
+
+nav .nav-link.logout:hover {
+  color: #1e5663 !important;
+}

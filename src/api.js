@@ -14,7 +14,7 @@ class YardHoppersApi {
   static token = "";
 
   static async request(endpoint, data = {}, method = "get") {
-    console.debug("API Call:", endpoint, data, method);
+    // console.debug("API Call:", endpoint, data, method);
 
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${YardHoppersApi.token}` };
@@ -34,24 +34,23 @@ class YardHoppersApi {
   /** Get details on a listings by listId. */
   static async getListing(listing_id) {
     let res = await this.request(`listings/${listing_id}`);
-    console.log('LISTING RESP FROM getLsitings ===> ', res)
+
     return res.listing;
   }
 
   /** Get details on all listings. */
   static async getListings() {
     let res = await this.request("listings");
-
     return res.listings;
   }
 
-static async createListing(newListingData) {
-  console.log("API newListingData ====>>> ", newListingData);
-  let res = await this.request('listings', newListingData, "post");
+  static async createListing(newListingData) {
+    // console.log("API newListingData ====>>> ", newListingData);
+    let res = await this.request("listings", newListingData, "post");
 
-  console.log("API NEW LSITING RESP ====>>>>", res)
-  return res.listing;
-}
+    // console.log("API NEW LSITING RESP ====>>>>", res);
+    return res.listing;
+  }
 
   /** Get details about User by username/token */
   static async getUserData(username) {

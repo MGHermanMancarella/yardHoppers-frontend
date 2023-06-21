@@ -1,52 +1,54 @@
+import React, { useContext } from "react";
+import { Navbar, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { useContext } from "react";
 import userContext from "./userContext";
-import "./Navigation.css"
+import "./Navigation.css";
 
-
-/** Navigation bar with links for Jobly
- *
- *
- * App -> Navigation
- *
- */
-
-function Navigation({logout}) {
+function Navigation({ logout }) {
   const { currUser } = useContext(userContext);
 
   return (
-    <nav className="NavBar">
-      <NavLink to="/" end>
-       <h2> Yard Hoppers</h2>
-      </NavLink>
-      <NavLink to="/listings" end>
+    <Navbar collapseOnSelect expand="md" className="navbar">
+      <Navbar.Brand>
+        <NavLink to="/" className="nav-link">
+          <h2>Yard Hoppers</h2>
+        </NavLink>
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse
+        id="responsive-navbar-nav"
+        className="justify-content-end"
+      >
+        <Nav>
+          <Nav.Link as={NavLink} to="/listings">
             Listings
-          </NavLink>
-      {!currUser &&
-        <div className="no-curr-user">
-          <NavLink to="/login" end>
-          Login
-          </NavLink>
-          <NavLink to="/signup" end>
-            Sign Up
-          </NavLink>
-        </div>
-        }
-
-{currUser &&
-        <div className="yes-curr-user">
-          <NavLink to="/new-listing" end>
-            Create a Listing
-          </NavLink>
-          <NavLink to="/profile" end>
-            Profile
-          </NavLink>
-          <NavLink to="/" onClick={logout} end>
-            Log out {currUser.username}
-          </NavLink>
-        </div>
-        }
-    </nav>
+          </Nav.Link>
+          {!currUser && (
+            <>
+              <Nav.Link as={NavLink} to="/login">
+                Login
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/signup">
+                Sign Up
+              </Nav.Link>
+            </>
+          )}
+          {currUser && (
+            <>
+              <Nav.Link as={NavLink} to="/new-listing">
+                Create a Listing
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/profile">
+                Profile
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/" onClick={logout} className="logout">
+                Log out {currUser.username}
+              </Nav.Link>
+            </>
+          )}
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
   );
 }
 

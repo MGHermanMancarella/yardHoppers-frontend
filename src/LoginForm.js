@@ -27,7 +27,7 @@ function LoginForm({ handleLogin }) {
   /** Call parent function and clear form. */
   async function handleSubmit(evt) {
     evt.preventDefault();
-    console.log("loginData",loginData)
+    // console.log("loginData",loginData)
     try {
       await handleLogin(loginData);
     } catch (err) {
