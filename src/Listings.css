@@ -1,26 +1,30 @@
 .ListingsPage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 80vh;
-}
-.listings-link {
-  text-decoration: none;
-}
-
-.my-card {
-  height: 600px;
-  max-width: 600px;
-  overflow: auto; /* Optional: this will add a scrollbar if the content overflows */
-}
-
-.my-col {
     align-items: center;
+    height: 80vh;
   }
 
-.my-card-img {
-  height: 180px; /* Fixed height for image */
-  object-fit: cover; /* Ensures the aspect ratio of the image is preserved */
-}
+  .listings-link {
+    text-decoration: none;
+  }
+
+  .my-card {
+    height: 600px;
+    max-width: 600px;
+    overflow: auto;
+  }
+
+  .my-col {
+      align-items: center;
+      justify-content: center;
+    }
+
+  .my-card-img {
+    height: 180px;
+    object-fit: cover;
+  }
+
+
+
+
 
 

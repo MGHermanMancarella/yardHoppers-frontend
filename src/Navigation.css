@@ -55,3 +55,7 @@ nav .nav-link.logout {
 nav .nav-link.logout:hover {
   color: #1e5663 !important;
 }
+
+nav .navbar-toggler {
+   margin-right: 30px;
+  }
