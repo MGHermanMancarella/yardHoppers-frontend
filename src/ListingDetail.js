@@ -3,6 +3,7 @@ import { Card, Row, Col, Container, Button } from "react-bootstrap";
 
 import { useParams } from 'react-router-dom';
 import YardHoppersApi from './api';
+import './ListingDetail.css'
 
 
 /** Component to display details about details for specific listing
@@ -42,6 +43,7 @@ function ListingDetail() {
   }
 
   return (
+    <div className="ListingDetailPage">
     <Container className="listing-card-container">
       <Card>
         <Row>
@@ -62,6 +64,7 @@ function ListingDetail() {
         </Row>
       </Card>
     </Container>
+    </div>
   );
 }
 

@@ -27,7 +27,7 @@ function Listings({ listState }) {
 
   return (
     <div className='ListingsPage'>
-      <Row xs={2} md={3} lg={4} className="g-4 m-2 p-2" >
+      <Row xs={2} md={3} lg={4} xl={5} className="g-4 m-2 p-2" >
         {listings.map((listing, idx) => (
           <Col key={idx} className='my-col'>
             <Card className='my-card' style={{ height: '370px', maxWidth: '400px' }}>
