@@ -26,7 +26,6 @@ function ListingDetail() {
     async function fetchListing() {
       try {
         const response = await YardHoppersApi.getListing(listing_id);
-        console.log("RESP FROM API CALL IN LISTING DETAIL ===>>>", response);
         setListing(response);
       } catch (error) {
         console.error("error ===>", error);
