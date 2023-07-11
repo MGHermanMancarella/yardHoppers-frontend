@@ -1,4 +1,4 @@
-# Yard Hoppers 
+# - Yard Hoppers -
 ### An Innovative Backyard Rental Platform
 
 Built using React, Bootstrap, Node.js, Express, Axios, SQL, PostgreSQL, Surge
