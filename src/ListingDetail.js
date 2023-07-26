@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from "react";
 import { Card, Row, Col, Container, Button } from "react-bootstrap";
-
-import { useParams } from 'react-router-dom';
-import YardHoppersApi from './api';
-import './ListingDetail.css'
-
+import userContext from "./userContext";
+import { useParams } from "react-router-dom";
+import YardHoppersApi from "./api";
+import "./ListingDetail.css";
 
 /** Component to display details about details for specific listing
  *
@@ -16,11 +15,11 @@ import './ListingDetail.css'
  * RoutesList/ListingList -> ListingDetails
  *
  */
-
 function ListingDetail() {
   const [listing, setListing] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const { listing_id } = useParams();
+  const { currUser } = useContext(userContext);
 
   useEffect(() => {
     async function fetchListing() {
@@ -43,27 +42,30 @@ function ListingDetail() {
   }
 
   return (
-    <div className="ListingDetailPage">
-    <Container className="listing-card-container">
-      <Card>
-        <Row>
-          <Col md={6}>
-            <Card.Img variant="top" src={listing.photo_url} />
-          </Col>
-          <Col md={6}>
-            <Card.Body>
-              <Card.Title>{listing.title}</Card.Title>
-              <Card.Text>
-                {listing.city}, {listing.state}
-              </Card.Text>
-              <Card.Text>{listing.description}</Card.Text>
-              <Card.Text>${listing.price}/day</Card.Text>
-              <Button variant="primary">Book Now</Button>
-            </Card.Body>
-          </Col>
-        </Row>
-      </Card>
-    </Container>
+    <div className='ListingDetailPage'>
+      <Container className='listing-card-container'>
+        <Card>
+          <Row>
+            <Col md={6}>
+              <Card.Img variant='top' src={listing.photo_url} />
+            </Col>
+            <Col md={6}>
+              <Card.Body>
+                <Card.Title>{listing.title}</Card.Title>
+                <Card.Text>
+                  {listing.city}, {listing.state}
+                </Card.Text>
+                <Card.Text>{listing.description}</Card.Text>
+                <Card.Text>${listing.price}/day</Card.Text>
+                {currUser && <Button variant='primary'>Book Now</Button>}
+                {currUser.username === listing.host_user && (
+                  <Button variant='danger'>Delete Listing</Button>
+                )}
+              </Card.Body>
+            </Col>
+          </Row>
+        </Card>
+      </Container>
     </div>
   );
 }
