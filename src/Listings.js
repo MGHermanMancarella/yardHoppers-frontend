@@ -20,7 +20,7 @@ function Listings({ listState }) {
       setIsLoading(false);
     }
     fetchListings();
-  }, []);
+  }, [setListings]);
 
 
   if (isLoading) return <i>Loading...</i>;
