@@ -26,12 +26,16 @@ function Homepage() {
           <h4>Get on my lawn!</h4>
         </div>
       </header>
-      <Link to='/login'>
-        <button class='btn btn-success mx-4'>Login</button>
-      </Link>
-      <Link to='/signup'>
-        <button class='btn btn-success'>Sign Up</button>
-      </Link>
+      {!currUser && (
+        <>
+          <Link to='/login'>
+            <button class='btn btn-success mx-4'>Login</button>
+          </Link>
+          <Link to='/signup'>
+            <button class='btn btn-success'>Sign Up</button>
+          </Link>
+        </>
+      )}
     </div>
   );
 }
