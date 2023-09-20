@@ -40,6 +40,17 @@ function ListingDetail() {
     return <div>No listing found.</div>;
   }
 
+  async function handleDelete(username) {
+    try {
+      await YardHoppersApi.deleteListing(username, listing_id);  // Assuming your YardHoppersApi has a deleteListing method
+      alert('Listing deleted successfully!');
+      // Redirect or update UI after deletion, e.g., using history.push() or another method
+    } catch (error) {
+      console.error("Error deleting listing:", error.message);
+      alert('Error deleting listing. Please try again.');
+    }
+  }
+  
   return (
     <div className='ListingDetailPage'>
       <Container className='listing-card-container'>
@@ -58,7 +69,7 @@ function ListingDetail() {
                 <Card.Text>${listing.price}/day</Card.Text>
                 {currUser && <Button variant='primary'>Book Now</Button>}
                 {currUser.username === listing.host_user && (
-                  <Button variant='danger'>Delete Listing</Button>
+                  <Button variant='danger' onClick={() => handleDelete(currUser.username)}>Delete Listing</Button>
                 )}
               </Card.Body>
             </Col>

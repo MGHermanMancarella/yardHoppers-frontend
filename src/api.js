@@ -72,7 +72,8 @@ class YardHoppersApi {
         { username, password, firstName, lastName, email },
         "post"
       );
-      return res.token;
+      this.token = res.token;
+      return res.token
     } catch (err) {
       console.error("API Error:", err);
       let message =
@@ -84,8 +85,16 @@ class YardHoppersApi {
   /** Return token when logging in as existing user. */
   static async login(username, password) {
     let res = await this.request("auth/token", { username, password }, "post");
-    return res.token;
+    this.token = res.token;
+    return res.token
   }
+
+/** Delete a specific listing by listId. */
+static async deleteListing(username, listing_id) {
+  let res = await this.request(`listings/${listing_id}`, {username, listing_id}, "delete");
+  return res;
+}
+
 }
 
 export default YardHoppersApi;
