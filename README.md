@@ -3,7 +3,7 @@
 
 Built using React, Bootstrap, Node.js, Express, Axios, SQL, PostgreSQL, Surge
 
-![yard-hoppers]([https://github.com/CodingHobo/yardHoppers-frontend/assets/111654143/f7195bdc-2b00-4bfa-a719-bd0be3276696]
+![yard-hoppers]([https://github.com/CodingHobo/yardHoppers-frontend/assets/111654143/f7195bdc-2b00-4bfa-a719-bd0be3276696])
 
 
 
